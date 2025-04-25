@@ -1,0 +1,46 @@
+<!-- Extends the basic html template -->
+{% extends "guest_baseTemplate.html" %}
+
+<!-- Updates the <head> of the webpage -->
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/aboutUs.css') }}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+{% endblock %} 
+
+<!-- Updates the <body> of the webpage -->
+{% block body %}
+<div class="content">
+    <h2>Who we are</h2>
+    <div class="row">
+        <div class="top_column">
+            <h3><span class="material-icons-outlined groups">groups</span></h3>
+            <p> Our team’s aim is to provide a trusted, secured web application that allows Voting processes to be held online.
+                The goal is to improve the efficiency of the voting process, reduce labor costs in operations,
+                and accessibility to disabled votes while being equally or more anonymous and efficient compared to the traditional voting system.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <h3><span class="material-icons-outlined">person</span></h3>
+            <p>Edmund, Project Manager</p>
+        </div>
+        <div class="column">
+            <h3><span class="material-icons-outlined">person</span></h3>
+            <p>Clement, Developer</p>
+        </div>
+        <div class="column">
+            <h3><span class="material-icons-outlined">person</span></h3>
+            <p>Daniel, Developer</p>
+        </div>
+        <div class="column">
+            <h3><span class="material-icons-outlined">person</span></h3>
+            <p>Issac, Developer</p>
+        </div>
+        <div class="column">
+            <h3><span class="material-icons-outlined">person</span></h3>
+            <p>Cai Hong, Developer</p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

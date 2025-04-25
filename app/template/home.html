@@ -1,0 +1,50 @@
+<!-- Extends the basic html template -->
+{% extends "guest_baseTemplate.html" %}
+
+<!-- Updates the <head> of the webpage -->
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+{% endblock %} 
+
+<!-- Updates the <body> of the webpage -->
+{% block body %}
+	<div class="banner">
+		<img src= {{url_for('static', filename='images/banner.jpg')}} />
+	</div>
+
+	<div class="content">
+		<div class="row">
+			<div class="top_column">
+				<div class ="top_title">
+					<h3>Make your decision-making process modern, secure, and effective</h3>
+				</div>
+				<div class ="top_paragraph">
+					<p>Upgrade from manually counting ballots to an online election system without sacrificing the integrity of your vote</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="column">
+				<h3><span class="material-icons-outlined">ballot</span> A reliable online voting tool for your group</h3>
+				<p>Run online elections among your group for a single important event</p>
+			</div>
+			<div class="column">
+				<h3><span class="material-icons-outlined">emoji_emotions</span> A pleasant way to cast votes</h3>
+				<p>Voters information are encrypted and they remained anonymous.</p>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="column">
+				<h3><span class="material-icons-outlined">emoji_emotions</span> A pleasant way to cast votes</h3>
+				<p>Your voters deserve a fair and easy to use voting website, accessible from any device</p>
+			</div>
+			<div class="column">
+				<h3><span class="material-icons-outlined">devices</span> Web app-based voting platform</h3>
+				<p>Send eligible voters to a personalized voting website</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

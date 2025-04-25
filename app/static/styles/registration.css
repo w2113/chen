@@ -1,0 +1,72 @@
+/* adding inline block to bold elements so that textbox are align */
+b{
+    display: inline-block;
+    width: 200px;
+  }
+  
+input {
+    width: 30%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #FFFFFF;
+  }
+  
+  /* button */
+.sign_up {
+	border: none;
+	outline: 0;
+	display: inline-block;
+	padding: 10px;
+	color: black;
+	background-color: #ddd;
+	text-align: center;
+	cursor: pointer;
+	margin-top: 10px;
+  }
+  
+  /* button */
+.sign_up:hover {
+	background-color: #555;
+	color: white;
+  }
+
+.content {
+    margin-top:5%;
+}
+
+@media only screen and (min-width: 2001px) 
+{
+  .info{
+    margin-left:60%;
+    margin-top:-30%;
+  }
+}
+
+@media only screen and (max-width: 2000px) 
+{
+  .info{
+    margin-left:60%;
+    margin-top:-30%;
+  }
+}
+
+@media only screen and (max-width: 1600px) 
+{
+  .info{
+    margin-left:60%;
+    margin-top:-40%;
+  }
+}
+
+@media only screen and (max-width: 1000px) 
+{
+  .info{
+    margin-left:70%;
+    margin-top:-50%;
+  }
+}
+
+
+

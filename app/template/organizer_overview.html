@@ -1,0 +1,35 @@
+{% extends "user_baseTemplate.html" %} 
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/organizer_overview.css') }}" />
+{% endblock %} 
+
+{% block body %}
+	<h2>Project Details</h2>
+	<form method="POST" action="">
+		<label for="name"><b>Project:</b></label>
+		<input type="text" id="name" maxlength="30" name="name" {% if projectDetails %} value="{{projectDetails.title}}"" {% endif %} {% if userType == "verifier" or projectStatus != "DRAFT" %} readonly {% endif %}/><br />
+		
+		<label for="status"><b>Status:</b></label>
+		<input type="text" id="status" {% if projectDetails %} value="{{projectDetails.status}}"" {% endif %} readonly /> <br />
+		
+		<label for="startDateTime"><b>Start Date & Time:</b></label>
+		<input type="datetime-local" id="startDateTime" name="startDateTime" {% if projectDetails %} value="{% if projectDetails.startDateTime %}{{projectDetails.startDateTime}}{% endif %}" {% endif %} {% if userType == "verifier" or projectStatus != "DRAFT"%} readonly {% endif %}/> <br />
+		
+		<label for="endDateTime"><b>End Date & Time:</b></label>
+		<input type="datetime-local" id="endDateTime" name="endDateTime" {% if projectDetails %} value="{% if projectDetails.endDateTime %}{{projectDetails.endDateTime}}{% endif %}" {% endif %} {% if userType == "verifier" or projectStatus != "DRAFT" %} readonly {% endif %}/> <br />
+		
+		<!-- <div class="form-group">
+			<label for="publicKey">Public Key:</label>
+			<input type="text" id="publicKey" name="publicKey" {% if projectDetails %} value="{{projectDetails.publicKey}}" {% endif %} {% if userType == "verifier" %} readonly {% endif %}/><br />
+			<small id="emailHelp" class="form-text text-muted">Click <a href="/generatekeys" target="_blank">here</a> to generate keys</small>
+		</div> -->
+
+		{% if userType == "owner"%}
+			{%if projectDetails.status == "DRAFT" %}
+				<button type="submit" name="action" value="Save" >Save Project</button>
+				<button type="submit" name="action" value="Delete">Delete Project</button>
+			{%endif%}
+		{% endif %}
+	</form>
+{% endblock %}

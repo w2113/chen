@@ -1,0 +1,25 @@
+{% extends "user_baseTemplate.html" %} 
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/formFields.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/organizer_downloadResults.css') }}" />
+{% endblock %} 
+
+{% block body %}
+	<h2>Download Results</h2>
+
+		<b>Total Number of Voters Invited: </b>
+        <span>{{ totalVotes }}</span> <br> <br>
+
+        <b>Number of Voters voted: </b>
+        <span>{{ uniqueVotes }}</span> <br> <br>
+        
+        <b>Number of Voters did not vote: </b>
+        <span>{{totalVotes - uniqueVotes}}</span> <br> <br>
+        
+		{% if projectStatus == "COMPLETED" %}
+        	<a href="/{{ projectID }}/downloadResults/EncryptedResult"><button>Download</button></a> <br> <br>
+		{% elif projectStatus == "ONGOING" %}
+			<button>Unable to download results</button>
+		{% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "user_baseTemplate.html" %}
+<!-- Updates the <head> of the webpage -->
+	{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/organizer_emailSettings.css') }}"/>
+{% endblock %} 
+<!--Change CSS-->
+
+<!-- Updates the <body> of the webpage -->
+	{% block body %}
+	<div class="content">
+
+		<h2>Email Settings</h2>
+		<form action ="/{{ projectID }}/view_emailSettings" method="post">
+		
+			<span>Custom invite message:</span>
+			<div class = "flexbox-item flexbox-item-1">
+				<textarea spellcheck="True" wrap= hard name = InvMsg id ="InvMsg" {% if userType == "verifier" or projectStatus != "DRAFT" %} readonly {% endif %}>{% if invMsg %}{{invMsg}}{% endif %}</textarea>
+			</div>
+      
+      <span> Custom reminder message:</span>
+      <div class = "flexbox-item flexbox-item-2">
+        <textarea spellcheck="True" wrap= hard name ="RmdMsg" id ="RmdMsg" {% if userType == "verifier" or projectStatus != "DRAFT" %} readonly {% endif %}>{% if rmdMsg %}{{rmdMsg}}{% endif %}</textarea>
+      </div>
+      
+      <div>
+				{% if userType == "owner" %}
+					{% if projectStatus == "DRAFT" %}
+						<button type="submit" name ="action" value="Update">Save</button>
+					{% endif %}
+          {% if projectStatus != "ONGOING" and projectStatus != "COMPLETED"%}
+					  <button type="submit" name ="action" value="SendEmail">Send reminder link</button>
+					{% endif %}
+				{% endif %}
+			</div>
+			<div class ="space"></div>
+		</form>
+	</div>
+  {% endblock %} 

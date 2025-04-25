@@ -1,0 +1,34 @@
+{% extends "user_baseTemplate.html" %}
+<!-- Updates the <head> of the webpage -->
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/organizer_electionMessage.css') }}"/>
+{% endblock %} 
+<!--Change CSS-->
+
+<!-- Updates the <body> of the webpage -->
+	{% block body %}
+	<div class="content"> 
+		<h2><b>Election Message</b></h2>
+		<form method="POST" action="/{{projectID}}/view_electionMessage" >
+		<div class = "flexbox-container">
+      
+			<span>Pre-Election Message:</span>
+			<div class = "flexbox-item flexbox-item-1">
+				<textarea class = "msgview" id = "preMsg" name ="preMsg" spellcheck="True" wrap=hard {% if userType == "verifier" or projectStatus != "DRAFT"%} readonly {% endif %}>{% if preMsg %}{{preMsg}}{% endif %}</textarea><br>
+			</div>
+      
+			<span> Post-Election Message:</span>
+			<div class = "flexbox-item flexbox-item-2">
+				<textarea id = "postMsg" name ="postMsg" spellcheck="True" wrap= hard {% if userType == "verifier" or projectStatus != "DRAFT"%} readonly {% endif %}>{% if postMsg %}{{postMsg}}{% endif %}</textarea><br>
+			</div>
+      
+			{% if userType == "owner" and projectStatus == "DRAFT" %}
+				<button type="submit">Save</button>
+			{% endif %}
+      
+		</div>
+		<div class ="space"></div>
+
+	</form>
+	
+	{% endblock %} 

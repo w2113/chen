@@ -1,0 +1,63 @@
+
+{% extends "guest_baseTemplate.html" %}
+<!-- Updates the <head> of the webpage -->
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/user_decrypt.css') }}"/>
+    <script type=text/javascript src="{{ url_for('static',filename='js/guest_downloadDecryptedFile.js') }}"></script>
+{% endblock %} 
+<!--Change CSS-->
+
+<!-- Updates the <body> of the webpage -->
+    {% block body %}
+    <form method="POST" action="" enctype="multipart/form-data">
+        <div class="content">
+            <div class="flex-container">
+                <h2>Decrypt</h2>
+
+                <table >
+                    <tr >
+                        <td class="col1">
+                            <label>Secret key:</label>
+                        </td>
+                        <td class="col2">	
+                            <input type="text" id = "secret_key" name ="secretKey" autocomplete="off">
+                        </td>
+						{% if decryptedData %}
+                        <td rowspan=5 id="results">
+							<pre id="decrypted_results">{{decryptedData}}</pre>
+                        </td>
+						{% endif %}
+                    </tr>
+					<tr>
+						<td class="warning"></td>
+						<td class="warning">*Incorrect secret key results in inaccurate votes</td>
+					</tr>
+                    <tr>
+                        <td class="col1">
+                            <label>Upload file:</label>
+                        </td>
+                        <td class="col2">
+                            <input type="file" name="data_file" id ="decrypt_file" accept =".encrypt">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="buttonCell">
+                            <button class="button" type="submit">Decrypt</button>
+                        </td>
+                        <!-- <td></td> -->
+                    </tr>
+					{% if decryptedData %}
+					<tr>
+                        <td colspan="2" id="buttonCell">
+                            <button type="button" class="button" onclick="downloadKeys()">Generate File</button>
+                        </td>
+                        <!-- <td></td> -->
+                    </tr>
+					{% endif %}
+                </table>
+
+				
+            </form>
+        </div>
+        <!-- </form> -->
+    {% endblock %} 

@@ -1,0 +1,46 @@
+{% extends "user_baseTemplate.html" %} 
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/formFields.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/organizer_editQuestions.css') }}" />
+{% endblock %} 
+
+{% block body %}
+	<h2>Edit Question</h2>
+	<form action="" method="post">
+		<label for="name">Project:</label>
+		<input type="text" id="name" value={{ projectName}} readonly /><br />
+		<label for="questionField">Question:</label>
+		<input type="text" 
+			   id="questionField"
+			   name="question"
+			   value=
+			   	{% if question is not none %}
+					"{{question.question}}"
+			   	{% else %}
+					""
+			   	{% endif %}
+			   	{% if userType == "verifier" or projectStatus != "DRAFT"%} readonly {% endif %}/> <br />
+		<div>
+			Answers (Click to view options):
+			{% if userType == "owner" and projectStatus == "DRAFT"%}
+				<a href="../edit_answers/{{ questionID }}/new_candidate"><img class="newQuestionImage" src={{ url_for('static',filename='images/plus.png') }}/></a>
+			{% endif %}
+		</div>
+		<div>
+			<ol>
+				{% for candidate in candidates %}
+				<li>
+					<a href="../edit_answers/{{candidate.questionID}}/{{ candidate.candidateID }}">
+						{{ candidate.candidateOption }}
+					</a>
+				</li>
+				{% endfor %}
+			</ol>
+		</div> 
+		{% if userType == "owner" and projectStatus == "DRAFT"%} 
+			<input type="submit" name="action" value="Save" /> </br>
+			<input type="submit" name="action" value="Delete" />
+		{% endif %}
+	</form>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "user_baseTemplate.html" %} 
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/formFields.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/organizer_manageVerifiers.css') }}" />
+{% endblock %} 
+
+{% block body %}
+	<h2>Manage Verifiers</h2>
+	<p>
+		Verifiers will be prompted to verify the details of the voting event before the voting event can go live.
+	</p>
+
+	{% if projectStatus == "DRAFT" %}  
+		<form action ="/{{projectID}}/manage_verifiers" method="post">
+			
+			<label for="addVerifierField">Add Verifier:</label>
+			<input type="email" id="addVerifierField" placeholder="Enter Email Address" name="addEmail" {% if userType == "verifier" %} readonly {% endif %}/>
+			{% if userType == "owner" %}
+				<button name="action" type="submit" value="addVerifier">Add</button>
+			{% endif %}
+		</form>
+	{% endif %}
+	
+	<table>
+		<tr>
+			<th>No.</th>
+			<th>Verifiers</th>
+			{% if userType == "owner" and projectStatus == "DRAFT" %}
+				<th>Delete</th>
+			{% endif %}
+		</tr>
+		{% set count = 1 %}
+		{% for record in verifiers %}
+			<tr>
+				<td>{{ count }}</td>
+				<td>{{ record.email }}</td>
+				{% if userType == "owner" and projectStatus == "DRAFT" %} 
+					<td>
+						<form action ="/{{projectID}}/manage_verifiers" method="post">
+							<input type="hidden" name="projectID" value="{{ projectID }}"/>
+							<input type="hidden" name="deleteID" value ={{ record.recordID }} />
+							<button name="action" class="cross_button" type="submit" value="deleteVerifier"><img class="cross" src={{ url_for('static',filename='images/cross.png') }} /></button>
+						</form>
+					</td>
+				{% endif %}
+			</tr>
+			{% set count = count + 1 %}
+		{% endfor %}
+	</table>
+		
+
+{% endblock %}

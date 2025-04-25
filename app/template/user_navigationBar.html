@@ -1,0 +1,35 @@
+<div class="sidenav">
+	<b>Project</b>
+	<a href="/mainballot">View All Projects</a>
+
+
+	{% if projectID %}
+		<a href="/{{ projectID }}/overview">Overview</a>
+		<a href="/{{ projectID }}/manage_verifiers">Manage Verifiers</a>
+		<a href="/{{ projectID }}/view_questions">Manage Questions</a>
+		<a href="/{{ projectID }}/view_electionMessage">Manage Election Messages</a>
+		<a href="/{{ projectID }}/view_importList">Manage Voters</a>
+		<a href="/{{ projectID }}/view_emailSettings">Manage Email Notifications</a>
+		
+		<!-- Display Publish Button if project is not completed -->
+		{% if projectStatus != "COMPLETED" and projectStatus != "ONGOING"%}
+			<a href="/{{ projectID }}/publish">
+				{% if userType == "owner" %}
+					Publish Event
+				{% else %}
+					Approve Event
+				{% endif %}
+			</a>
+		{% endif %}
+		<!-- Allow organizers to view results when project is completed -->
+		{% if projectStatus == "COMPLETED" or projectStatus == "ONGOING"%}
+			<a href="/{{ projectID }}/downloadResults"><b>Download Results</b></a>
+		{% endif %}
+	{% endif %}
+	
+	<br/>
+	<b>Account</b>
+	<a href="/changepassword">Change Password</a>
+	<a href="/settings">Settings</a>
+	<a href="/logout">Log out</a>
+</div>

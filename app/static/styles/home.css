@@ -1,0 +1,85 @@
+/* banner */
+.banner {
+	text-align: center;
+}
+
+.banner img{
+	margin-top: 20px;
+	max-height: 500px;
+	width: 100%;
+	border:solid 1px;
+}
+
+* {
+	box-sizing: border-box;
+  }
+
+/* adjust the column at the top */
+.top_column {
+	margin-top:3%;
+	margin-left:22%;
+	width: 55%;
+	padding: 15px;
+	border:solid 1px;
+}
+
+/* adjust the title at the top column */
+.top_title{
+	margin-left:6%;
+}
+
+/* adjust the paragraph at the top column */
+.top_paragraph {
+	margin-left:3%;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+	float: left;
+	margin-left:10%;
+	margin-top:3%;
+	width: 40%;
+	padding: 15px;
+}
+  
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+@media only screen and (max-width: 1600px) 
+{
+	.top_column {
+		margin-top:3%;
+		margin-left:10%;
+		width: 80%;
+		padding: 15px;
+		border:solid 1px;
+	}
+	.top_title{
+		margin-left:6%;
+	}
+	
+	.top_paragraph {
+		margin-left:3%;
+	}
+	.column {
+		float: left;
+		margin-left:6%;
+		margin-top:3%;
+		width: 40%;
+		padding: 15px;
+	}
+	  
+	/* Clear floats after the columns */
+	.row:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+
+
