@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Homomorphic-Encryption-and-Its-applications-to-e-voting
 
 # Create Virtual Environment
@@ -24,3 +25,6 @@ flask run
 # To upload to AWS
 
 zip .ebextension, app, application.py, requirements.txt together.
+=======
+# chen
+>>>>>>> 6d5dc4fb43492aa0371288babc9bfd804da39561
